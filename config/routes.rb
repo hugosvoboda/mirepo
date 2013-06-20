@@ -1,5 +1,7 @@
 Holidayreminder::Application.routes.draw do
-  devise_for :users
+  
+  devise_for :users,:controllers => { :registrations =>'registration'}
+  match 'dashboard' => 'home#dashboard'
 
   root :to => "home#index"
 
