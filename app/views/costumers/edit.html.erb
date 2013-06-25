@@ -1,6 +1,7 @@
-<h1>Editing costumer</h1>
+<p>Usuario Actual: <strong><%= current_user.first_name %></strong></p>
+<h1>Modificar Cliente</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @costumer %> |
-<%= link_to 'Back', costumers_path %>
+<%= link_to 'Ver', @costumer %> |
+<%= link_to 'Volver', costumers_path %>

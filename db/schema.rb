@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620230535) do
+ActiveRecord::Schema.define(:version => 20130625035414) do
 
   create_table "costumers", :force => true do |t|
     t.string   "name",       :null => false
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20130620230535) do
   end
 
   add_index "costumers", ["email"], :name => "index_costumers_on_email", :unique => true
+
+  create_table "holidays", :force => true do |t|
+    t.string   "description", :null => false
+    t.date     "date",        :null => false
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "holidays", ["date"], :name => "index_holidays_on_date", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

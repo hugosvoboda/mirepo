@@ -1,26 +1,30 @@
-<h2>Sign up</h2>
+<h2>Registrarse en Holiday Reminder</h2>
+
+<p id="notice"><%= notice %></p>
+
+<h3>Complete los siguientes datos del formulario:</h3>
 
 <%= form_tag(user_registration_path,:method => 'post') %>
 <%= devise_error_messages! %>
 <table>
 
 <tr>
-<td>First Name : </td>
+<td>Nombre : </td>
 <td><%=text_field_tag "user[first_name]",@user.first_name %></td>
 </tr>
 
 <tr>
-<td>Last Name : </td>
+<td>Apellido : </td>
 <td><%=text_field_tag "user[last_name]",@user.last_name %></td>
 </tr>
 
 <tr>
-<td>Country : </td>
+<td>Pais : </td>
 <td><%= select_tag(:country_id, options_for_select([['Argentina', 1], ['Brazil', 2], ['United States', 3]], 1)) %></td>
 </tr>
 
 <tr>
-<td>State : </td>
+<td>Provincia : </td>
 <td><%=text_field_tag "user[state]",@user.state %></td>
 </tr>
 
@@ -30,12 +34,12 @@
 </tr>
 
 <tr>
-<td>Password : </td>
+<td>Contrase&ntilde;a : </td>
 <td><%=password_field_tag "user[password]",@user.password %></td>
 </tr>
 
 <tr>
-<td>Retype password : </td>
+<td>Repetir Contrase&ntilde;a : </td>
 <td><%=password_field_tag "user[password_confirmation]",@user.password_confirmation %></td>
 </tr>
 

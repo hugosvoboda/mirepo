@@ -46,7 +46,7 @@ class CostumersController < ApplicationController
 
     respond_to do |format|
       if @costumer.save
-        format.html { redirect_to @costumer, notice: 'Costumer was successfully created.' }
+        format.html { redirect_to @costumer, notice: 'El Cliente fue creado en forma satisfactoria.' }
         format.json { render json: @costumer, status: :created, location: @costumer }
       else
         format.html { render action: "new" }
@@ -62,7 +62,7 @@ class CostumersController < ApplicationController
 
     respond_to do |format|
       if @costumer.update_attributes(params[:costumer])
-        format.html { redirect_to @costumer, notice: 'Costumer was successfully updated.' }
+        format.html { redirect_to @costumer, notice: 'El Cliente fue Actualizado.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,7 +78,7 @@ class CostumersController < ApplicationController
     @costumer.destroy
 
     respond_to do |format|
-      format.html { redirect_to costumers_url }
+      format.html { redirect_to costumers_url, notice: 'El Cliente fue Eliminado.' }
       format.json { head :no_content }
     end
   end

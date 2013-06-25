@@ -1,5 +1,8 @@
 Holidayreminder::Application.routes.draw do
   
+  resources :holidays
+
+
   resources :costumers
 
 

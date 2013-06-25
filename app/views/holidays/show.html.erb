@@ -1,0 +1,18 @@
+<p>Usuario Actual: <strong><%= current_user.first_name %></strong></p>
+<h1>Modificar Feriado</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Descripci&oacute;n:</b>
+  <%= @holiday.description %>
+</p>
+
+<p>
+  <b>Fecha:</b>
+  <%= @holiday.date %>
+</p>
+
+
+<%= link_to 'Modificar', edit_holiday_path(@holiday) %> |
+<%= link_to 'Volver', holidays_path %>

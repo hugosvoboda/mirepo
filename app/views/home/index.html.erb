@@ -1,14 +1,20 @@
 <% if user_signed_in? %>
 
-<h3>Holiday Reminder</h3>
-Hi <%= current_user.first_name %>,<br /><br />
-<%= link_to "Costumers", costumers_path, :method => :get %>&nbsp;|&nbsp;
-<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+<h1>Holiday Reminder</h1>
+<h3>Hola <%= current_user.first_name %>, qu&eacute; deseas hacer?</h3><br />
+<%= link_to "Clientes", costumers_path, :method => :get %>&nbsp;|&nbsp;
+<%= link_to "Feriados", holidays_path, :method => :get %>&nbsp;|&nbsp;
+<%= link_to "Salir", destroy_user_session_path, :method => :delete %>
 
 <% else %>
 
-<h1>Welcome to Holiday Reminder</h1>
-<%= link_to "Sign In", new_user_session_path, :method => :get %>
-<%= link_to "Sign up", new_user_registration_path, :method => :get %>
+<h1>Bienvenido a Holiday Reminder</h1>
+
+<h3>La manera m&aacute;s efectiva de administrar y recordar a todos tus clientes los pr&oacute;ximos feriados.</h3>
+<h3>Es muy simple! Solamente ingresa los datos de tus clientes, tus feriados, y ya estás listo!</h3>
+<h3>Si a&uacute;n no eres miembro registrate f&aacute;cilmente ahora!</h3>
+
+<%= link_to "Ingresar", new_user_session_path, :method => :get %>&nbsp;|&nbsp;
+<%= link_to "Registrarse", new_user_registration_path, :method => :get %>
 
 <% end %>
