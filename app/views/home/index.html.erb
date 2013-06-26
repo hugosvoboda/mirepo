@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 
-<h1>Holiday Reminder</h1>
+<h1>Holidays Reminder</h1>
 <h3>Hola <%= current_user.first_name %>, qu&eacute; deseas hacer?</h3><br />
 <%= link_to "Clientes", costumers_path, :method => :get %>&nbsp;|&nbsp;
 <%= link_to "Feriados", holidays_path, :method => :get %>&nbsp;|&nbsp;
@@ -8,7 +8,7 @@
 
 <% else %>
 
-<h1>Bienvenido a Holiday Reminder</h1>
+<h1>Bienvenido a Holidays Reminder</h1>
 
 <h3>La manera m&aacute;s efectiva de administrar y recordar a todos tus clientes los pr&oacute;ximos feriados.</h3>
 <h3>Es muy simple! Solamente ingresa los datos de tus clientes, tus feriados, y ya estás listo!</h3>
