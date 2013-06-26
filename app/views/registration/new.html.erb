@@ -5,12 +5,18 @@
 <h3>Complete los siguientes datos del formulario:</h3>
 
 <%= form_tag(user_registration_path,:method => 'post') %>
-<%= devise_error_messages! %>
+
+<ul>
+  <% @user.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>
+
 <table>
 
 <tr>
 <td>Nombre : </td>
-<td><%=text_field_tag "user[first_name]",@user.first_name %></td>
+<td><%=text_field_tag "user[first_name]",@user.first_name, :autofocus => true %></td>
 </tr>
 
 <tr>

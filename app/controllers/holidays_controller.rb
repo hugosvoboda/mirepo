@@ -1,6 +1,9 @@
 class HolidaysController < ApplicationController
   # GET /holidays
   # GET /holidays.json
+
+  before_filter :authenticate_user! #, :except => [:show, :index]
+
   def index
     #@holidays = Holiday.all
     @holidays = Holiday.where("user_id = '#{current_user.id}'")

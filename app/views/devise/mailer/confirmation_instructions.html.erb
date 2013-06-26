@@ -1,5 +1,5 @@
-<p>Bienvenido <%= @email %>!</p>
+<p>Bienvenido <%= @email %> a Holiday Reminder!</p>
 
-<p>Ud. puede confirmar su nueva cuentra a traves del siguiente enlace:</p>
+<p>Ud. puede confirmar su nueva cuenta a traves del siguiente enlace:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to 'Confirmar mi Cuenta', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

@@ -1,6 +1,9 @@
 class CostumersController < ApplicationController
   # GET /costumers
   # GET /costumers.json
+
+  before_filter :authenticate_user! #, :except => [:show, :index]
+
   def index
     @costumers = Costumer.where("user_id = '#{current_user.id}'")
                                   #user_id LIKE '%#{params[:first_name]}%'")

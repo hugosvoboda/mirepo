@@ -2,9 +2,7 @@ Holidayreminder::Application.routes.draw do
   
   resources :holidays
 
-
   resources :costumers
-
 
   devise_for :users,:controllers => { :registrations =>'registration'}
   match 'dashboard' => 'home#dashboard'

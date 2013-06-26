@@ -1,7 +1,6 @@
 class RegistrationController < ApplicationController
   def new
     @user= User.new
-    #@contact = Contact.new
   end
 
   def create
@@ -21,17 +20,5 @@ class RegistrationController < ApplicationController
     else
       render :action => "new"
     end
-
-    #@contact = Contact.new
-    #@contact.mobile = params[:contact][:mobile]
-    #@contact.address = params[:contact][:address]
-    #@contact.valid?
-    #if @contact.errors.blank?
-    #  @contact.user = @user
-    #  @contact.save
-    #  redirect_to dashboard_path
-    #else
-    # render :action => "new"
-    #end
   end
 end
