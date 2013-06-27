@@ -3,10 +3,10 @@ class HolidaysController < ApplicationController
   # GET /holidays.json
 
   before_filter :authenticate_user! #, :except => [:show, :index]
+  before_filter :get_current_holiday, only: [:show, :edit, :update, :destroy]
 
   def index
-    #@holidays = Holiday.all
-    @holidays = Holiday.where("user_id = '#{current_user.id}'")
+    @holidays = current_user.holidays
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,8 +17,6 @@ class HolidaysController < ApplicationController
   # GET /holidays/1
   # GET /holidays/1.json
   def show
-    @holiday = Holiday.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @holiday }
@@ -28,7 +26,7 @@ class HolidaysController < ApplicationController
   # GET /holidays/new
   # GET /holidays/new.json
   def new
-    @holiday = Holiday.new
+    @holiday = current_user.holidays.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,14 +36,12 @@ class HolidaysController < ApplicationController
 
   # GET /holidays/1/edit
   def edit
-    @holiday = Holiday.find(params[:id])
   end
 
   # POST /holidays
   # POST /holidays.json
   def create
-    @holiday = Holiday.new(params[:holiday])
-    @holiday.user_id = current_user.id
+    @holiday = current_user.holidays.build(params[:holiday])
 
     respond_to do |format|
       if @holiday.save
@@ -61,8 +57,6 @@ class HolidaysController < ApplicationController
   # PUT /holidays/1
   # PUT /holidays/1.json
   def update
-    @holiday = Holiday.find(params[:id])
-
     respond_to do |format|
       if @holiday.update_attributes(params[:holiday])
         format.html { redirect_to @holiday, notice: 'El Feriado fue Actualizado.' }
@@ -77,12 +71,16 @@ class HolidaysController < ApplicationController
   # DELETE /holidays/1
   # DELETE /holidays/1.json
   def destroy
-    @holiday = Holiday.find(params[:id])
     @holiday.destroy
 
     respond_to do |format|
       format.html { redirect_to holidays_url, notice: 'El Feriado fue Eliminado.' }
       format.json { head :no_content }
     end
+  end
+
+protected
+  def get_current_holiday
+    @holiday = current_user.holidays.find(params[:id])
   end
 end
