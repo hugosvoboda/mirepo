@@ -3,10 +3,10 @@ class CostumersController < ApplicationController
   # GET /costumers.json
 
   before_filter :authenticate_user! #, :except => [:show, :index]
+  before_filter :get_current_costumer, only: [:show, :edit, :update, :destroy]
 
   def index
-    @costumers = Costumer.where("user_id = '#{current_user.id}'")
-                                  #user_id LIKE '%#{params[:first_name]}%'")
+    @costumers = current_user.costumers
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,8 +17,6 @@ class CostumersController < ApplicationController
   # GET /costumers/1
   # GET /costumers/1.json
   def show
-    @costumer = Costumer.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @costumer }
@@ -28,7 +26,7 @@ class CostumersController < ApplicationController
   # GET /costumers/new
   # GET /costumers/new.json
   def new
-    @costumer = Costumer.new
+    @costumer = current_user.costumers.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,14 +36,12 @@ class CostumersController < ApplicationController
 
   # GET /costumers/1/edit
   def edit
-    @costumer = Costumer.find(params[:id])
   end
 
   # POST /costumers
   # POST /costumers.json
   def create
-    @costumer = Costumer.new(params[:costumer])
-    @costumer.user_id = current_user.id
+    @costumer = current_user.costumers.build(params[:costumer])
 
     respond_to do |format|
       if @costumer.save
@@ -61,8 +57,6 @@ class CostumersController < ApplicationController
   # PUT /costumers/1
   # PUT /costumers/1.json
   def update
-    @costumer = Costumer.find(params[:id])
-
     respond_to do |format|
       if @costumer.update_attributes(params[:costumer])
         format.html { redirect_to @costumer, notice: 'El Cliente fue Actualizado.' }
@@ -77,12 +71,16 @@ class CostumersController < ApplicationController
   # DELETE /costumers/1
   # DELETE /costumers/1.json
   def destroy
-    @costumer = Costumer.find(params[:id])
     @costumer.destroy
 
     respond_to do |format|
       format.html { redirect_to costumers_url, notice: 'El Cliente fue Eliminado.' }
       format.json { head :no_content }
     end
+  end
+
+protected
+  def get_current_costumer
+    @costumer = current_user.costumers.find(params[:id])
   end
 end
